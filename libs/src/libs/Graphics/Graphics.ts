@@ -5,7 +5,7 @@ export interface Font {
     readonly charHeight: number;
     readonly firstCharCode: number;
     readonly lastCharCode: number;
-    readonly data: ReadonlyArray<number>;
+    readonly data: Uint8Array;
 }
 
 export abstract class DisplayDriver {
