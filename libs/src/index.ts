@@ -1,5 +1,4 @@
 import { LED_WS2812, SmartLed } from "smartled"
-import { Pins } from "./libs/robutek.js"
 import { I2C1 } from "i2c"
 
 import { SH1106 } from "./libs/Graphics/SH1106.js"; // Import the SH1106 library
@@ -7,12 +6,15 @@ import { SSD1306 } from "./libs/Graphics/SSD1306.js"; // Import the SH1106 libra
 import { FONT_5X7 } from "./libs/Graphics/Fonts.js"; // Import the FONT_5X7 from the new Fonts.ts file
 // import { connect as connectSH1106 } from "./libs/SH1106.js"; // Old import
 
+import { createRobutek } from "./libs/robutek.js"
+const robutek = createRobutek("V2");
 
-I2C1.setup({ sda: 48, scl: 47, bitrate: 100000 });
+
+I2C1.setup({ sda: robutek.Pins.SDA, scl: robutek.Pins.SCL, bitrate: 100000 });
 
 
-// const display = new SH1106(I2C1);
-const display = new SSD1306(I2C1);
+const display = new SH1106(I2C1);
+// const display = new SSD1306(I2C1);
 
 display.setFont(FONT_5X7); // Set the font to FONT_5X7
 
@@ -45,9 +47,35 @@ display.drawText(64, 20, "AH", true); // Changed to match the reported problemat
 // console.log("SH1106 Demo Initialized. Display should show some pixels and lines.");
 display.drawText(5, 50, "uvwxyz 012345", true); // Shorter for example
 
-// Update the display to show the drawn pixels/lines
 display.display();
+await sleep(1000);
 
+// drawCircle
+display.clear();
+display.drawCircle(64, 32, 20, true);
+display.display();
+await sleep(1000);
+
+
+// fillCircle
+display.clear();
+display.fillCircle(64, 32, 20, false); // Draw a filled circle
+display.display();
+await sleep(1000);
+
+
+// drawRectangle
+display.clear();
+display.drawRectangle(0, 0, 128, 64, true); // Draw a rectangle covering the entire display
+display.display();
+await sleep(1000);
+
+
+// drawCircle
+display.clear();
+display.fillRectangle(64, 32, 20, 20, true); // Draw a filled rectangle at the center of the display
+display.display();
+await sleep(1000);
 
 
 let counter = 0; // Initialize a counter

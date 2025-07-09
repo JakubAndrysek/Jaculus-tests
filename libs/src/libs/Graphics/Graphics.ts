@@ -184,55 +184,55 @@ export abstract class DisplayDriver {
         }
     }
 
-    // drawRectangle(x: number, y: number, width: number, height: number, color: boolean = true): void {
-    //     this.drawLine(x, y, x + width - 1, y, color);
-    //     this.drawLine(x, y + height - 1, x + width - 1, y + height - 1, color);
-    //     this.drawLine(x, y, x, y + height - 1, color);
-    //     this.drawLine(x + width - 1, y, x + width - 1, y + height - 1, color);
-    // }
+    drawRectangle(x: number, y: number, width: number, height: number, color: boolean = true): void {
+        this.drawLine(x, y, x + width - 1, y, color);
+        this.drawLine(x, y + height - 1, x + width - 1, y + height - 1, color);
+        this.drawLine(x, y, x, y + height - 1, color);
+        this.drawLine(x + width - 1, y, x + width - 1, y + height - 1, color);
+    }
 
-    // fillRectangle(x: number, y: number, width: number, height: number, color: boolean = true): void {
-    //     for (let i = 0; i < height; i++) {
-    //         for (let j = 0; j < width; j++) {
-    //             this.drawPixel(x + j, y + i, color);
-    //         }
-    //     }
-    // }
+    fillRectangle(x: number, y: number, width: number, height: number, color: boolean = true): void {
+        for (let i = 0; i < height; i++) {
+            for (let j = 0; j < width; j++) {
+                this.drawPixel(x + j, y + i, color);
+            }
+        }
+    }
 
-    // drawCircle(x0: number, y0: number, radius: number, color: boolean = true): void {
-    //     let x = radius;
-    //     let y = 0;
-    //     let err = 0;
+    drawCircle(x0: number, y0: number, radius: number, color: boolean = true): void {
+        let x = radius;
+        let y = 0;
+        let err = 0;
 
-    //     while (x >= y) {
-    //         this.drawPixel(x0 + x, y0 + y, color);
-    //         this.drawPixel(x0 + y, y0 + x, color);
-    //         this.drawPixel(x0 - y, y0 + x, color);
-    //         this.drawPixel(x0 - x, y0 + y, color);
-    //         this.drawPixel(x0 - x, y0 - y, color);
-    //         this.drawPixel(x0 - y, y0 - x, color);
-    //         this.drawPixel(x0 + y, y0 - x, color);
-    //         this.drawPixel(x0 + x, y0 - y, color);
+        while (x >= y) {
+            this.drawPixel(x0 + x, y0 + y, color);
+            this.drawPixel(x0 + y, y0 + x, color);
+            this.drawPixel(x0 - y, y0 + x, color);
+            this.drawPixel(x0 - x, y0 + y, color);
+            this.drawPixel(x0 - x, y0 - y, color);
+            this.drawPixel(x0 - y, y0 - x, color);
+            this.drawPixel(x0 + y, y0 - x, color);
+            this.drawPixel(x0 + x, y0 - y, color);
 
-    //         if (err <= 0) {
-    //             y += 1;
-    //             err += 2 * y + 1;
-    //         }
-    //         if (err > 0) {
-    //             x -= 1;
-    //             err -= 2 * x + 1;
-    //         }
-    //     }
-    // }
+            if (err <= 0) {
+                y += 1;
+                err += 2 * y + 1;
+            }
+            if (err > 0) {
+                x -= 1;
+                err -= 2 * x + 1;
+            }
+        }
+    }
 
-    // fillCircle(x0: number, y0: number, radius: number, color: boolean = true): void {
-    //     // Using horizontal lines to fill the circle
-    //     for (let y = -radius; y <= radius; y++) {
-    //         for (let x = -radius; x <= radius; x++) {
-    //             if (x * x + y * y <= radius * radius) {
-    //                 this.drawPixel(x0 + x, y0 + y, color);
-    //             }
-    //         }
-    //     }
-    // }
+    fillCircle(x0: number, y0: number, radius: number, color: boolean = true): void {
+        // Using horizontal lines to fill the circle
+        for (let y = -radius; y <= radius; y++) {
+            for (let x = -radius; x <= radius; x++) {
+                if (x * x + y * y <= radius * radius) {
+                    this.drawPixel(x0 + x, y0 + y, color);
+                }
+            }
+        }
+    }
 }

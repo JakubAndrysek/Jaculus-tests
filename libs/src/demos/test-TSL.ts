@@ -1,5 +1,4 @@
 import { LED_WS2812, SmartLed } from "smartled"
-import { Pins } from "../libs/robutek.js"
 import { I2C1 } from "i2c"
 import { TSL2561 } from "../libs/TSL2561.js"; // Import the TSL2561 sensor library
 
