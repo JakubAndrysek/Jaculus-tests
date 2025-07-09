@@ -1,7 +1,8 @@
 import { Font } from "./Graphics.js";
 
 // Simple 5x7 font (ASCII characters 32-126)
-const FONT_5X7_DATA = new Uint8Array([
+// Pre-allocated static Uint8Array for maximum efficiency
+const FONT_5X7_DATA = Uint8Array.from([
     0x00, 0x00, 0x00, 0x00, 0x00, // Space
     0x00, 0x00, 0x5F, 0x00, 0x00, // !
     0x00, 0x07, 0x00, 0x07, 0x00, // "
